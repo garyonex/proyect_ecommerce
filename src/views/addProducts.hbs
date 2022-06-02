@@ -1,0 +1,40 @@
+<div class="jumbotron center">
+    <h1>Carga productos</h1>
+    <form action="/load-product" method="post" enctype="multipart/form-data" id="prod-new" class="rounded-0">
+            <div class="form-group mb-3">
+                <label class="form-group-text" id="basic-addon1">Title</la>
+                <input
+                    type="text"
+                    class="form-control rounded-0"
+                    placeholder="Title"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    name="title"
+                    id="title"
+                    required
+                    autofocus
+                />
+
+                <label class="form-group-text">$</label>
+                <input
+                    type="text"
+                    class="form-control rounded-0"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                    placeholder="Price"
+                    name="price"
+                    id="price"
+                    required
+                />
+                <label class="form-group-text" id="basic-addon1">Photo</la>
+                    <input
+                        type="file"
+                        class="form-control rounded-0 my-auto"
+                        placeholder="Cargar imagen"
+                        name="imagen"
+                        id="url"
+                        required
+                    />
+            </div>
+            <input type="submit" value="Cargar" class="rounded-0 btn btn-danger">
+        </form>
+</div>

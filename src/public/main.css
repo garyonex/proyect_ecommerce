@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(201, 177, 240);
+    height: 100vh;
+}
+.img_thumbnail {
+    width: 80px;
+    height:80px;
+}
+.tarjea {
+    width: 190px;
+    height: 254px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+                -15px -15px 30px #ffffff;
+   }
