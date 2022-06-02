@@ -6,13 +6,13 @@ Servidor creado mediante nodeJs
 **Server:** Node, Express
 
 ## Dependencias
-
-express
-morgan
-multer
-socket.io
-babel
-handlebars
+🔧
+[express]
+[morgan]
+[multer]
+[socket.io]
+[babel]
+[handlebars]
 
 ## Start the server
 
@@ -46,5 +46,5 @@ Si quiere desplegar el proyecto en su localhost
 #### Clone the project
 
 ```bash
-  git clone https://github.com/garyonex/proyect_ecommerce
+ ♻️ git clone https://github.com/garyonex/proyect_ecommerce
 ```
