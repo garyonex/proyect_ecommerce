@@ -19,15 +19,16 @@ handlebars
 Si quiere desplegar el proyecto en su localhost
 
 ```bash
-  npm run start
+ 🚀 npm run start
 ```
 
 #### Get all items
 
 ```http
-  GET /productos
+:fire: GET /productos
 ```
 
+:triangular_flag_on_post:
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Return**.lista productos |
@@ -38,9 +39,9 @@ Si quiere desplegar el proyecto en su localhost
   GET /producto/${id}
 ```
 
-| Parameter | Type     | Description                            |
-| :-------- | :------- | :------------------------------------- |
-| `id`      | `string` | **Return**. return JSON productos `id` |
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `id`      | `string` | **Return**. JSON productos `id` |
 
 #### Clone the project
 
