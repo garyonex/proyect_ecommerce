@@ -31,7 +31,7 @@ Si quiere desplegar el proyecto en su localhost
 :triangular_flag_on_post:
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Return**.lista productos |
+| `api_key` | `string` | **Return**.card productos |
 
 #### Get item
 
@@ -42,6 +42,17 @@ Si quiere desplegar el proyecto en su localhost
 | Parameter | Type     | Description                     |
 | :-------- | :------- | :------------------------------ |
 | `id`      | `string` | **Return**. JSON productos `id` |
+
+#### Get item/list
+
+```http
+  GET /api/producto/
+```
+
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `api_key`      | `string` | **Return**. lista productos cargados |
+
 
 #### Clone the project
 
