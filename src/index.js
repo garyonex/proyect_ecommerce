@@ -6,38 +6,42 @@ import http from 'http';
 // id aleatorios
 import { v4 as uuid } from 'uuid';
 import { engine } from 'express-handlebars';
-import {router as indexRouter} from './routes/index.routes'
+import { router as indexRouter } from './routes/index.routes';
 const path = require('path');
 import Container from './container';
-const productos = new Container(path.join(__dirname, './dataBase/products.json'))
+const productos = new Container(
+    path.join(__dirname, './dataBase/products.json')
+);
 //INICIO SERVIDOR
 const app = express();
 const httpServer = http.createServer(app);
 const io = new webSocket(httpServer);
 const PORT = 3000;
 httpServer.listen(PORT);
-console.log(`Servidor en puerto ${PORT}`);
+console.log(`Servidor en puerto http://localhost:${PORT}`);
 
 //routes
-app.use('/', indexRouter)
+app.use('/', indexRouter);
 
 //MULTER
 
 const storage = multer.diskStorage({
-    destination:  path.join(__dirname, 'public/files'), 
-    filename:(req,file,cb)=>{
-        cb(null, file.originalname)
-    }
-})
+    destination: path.join(__dirname, 'public/files'),
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});
 //MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
-app.use(multer({
-    storage,
-    dest: path.join(__dirname, './public/upload')
-}).single('myFile'))
+app.use(
+    multer({
+        storage,
+        dest: path.join(__dirname, './public/upload'),
+    }).single('myFile')
+);
 
 //Seteo - motor de plantilla
 
@@ -57,15 +61,18 @@ app.set('view engine', 'hbs');
 const mensajes = [];
 
 io.on('connection', (socket) => {
-    
     console.log(`Nueva conexion cliente ${socket.id}`);
-    socket.emit('server:productos', productos)
-    console.log(productos)
-    socket.emit('server:mensajes', mensajes)
+    socket.emit('server:productos', productos);
+    socket.emit('server:mensajes', mensajes);
 
     socket.on('client:chat', (data) => {
         const chat = { ...data, id: uuid() };
         mensajes.push(chat);
         io.sockets.emit('server:chat', chat);
+    });
+
+    socket.on('client:pay', (prodId) => {
+        console.log(`Ids seleccionado ${prodId}`);
+     
     });
 });

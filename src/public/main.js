@@ -1,6 +1,10 @@
 const socket = io();
 const notes = document.getElementById('notes');
-socket.on('server:productos',(productos)=>{})
+socket.on('server:productos', (productos) => {
+    const productsListen = productos.content;
+    console.log(productsListen);
+    displayProductos(productsListen);
+});
 socket.on('server:chat', (data) => {
     console.log(data);
     render(data);
@@ -21,7 +25,6 @@ const render = (data) => {
                 </div>
             </div>
             `;
-    
 };
 
 // para agregar los mensajes que nos envian desde el form en la plantilla
@@ -43,3 +46,27 @@ dateNow = () => {
 const cargar = (nota) => {
     nota.forEach((nota) => render(nota));
 };
+
+// ----- card productos 
+function displayProductos(productList) {
+    let productosHTML = '';
+ 
+    productList.forEach((element) => {
+        productosHTML += `<div class="col text-center mt-4 text-capitalize" >
+           
+                    <div class="card h-100 card_img">
+                        <img src="${element.thumbnail}" class="card-img-top" alt="${element.title}">
+                        <div class="card-body">
+                        <h5 class="card-title">${element.title}</h5>
+                        <p class="card-text">Price ${element.price}</p>
+                         <p class="card-text">Stock ${element.stock}</p>
+                        <button class="btn btn-primary" onclick="add(${element.id}, ${element.price})">Comprar</button>
+                        </div>
+                    </div>
+             
+        </div>`;
+    });
+    document.getElementById('produc_prueba').innerHTML = productosHTML;
+    document.getElementById('pay_user').style.display = "none";
+  
+}

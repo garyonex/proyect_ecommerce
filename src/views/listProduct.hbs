@@ -1,9 +1,4 @@
-<script>
-    const sock = io()
-    sock.on('server:productos',(product)=>{
-    console.log(product);
-})
-</script>
+
 <h1 class='text-center h1'>Vista productos</h1>
 <div class='container'>
 
@@ -13,6 +8,7 @@
                 <th scope='col'>ID</th>
                 <th scope='col'>Title</th>
                 <th scope='col'>Price</th>
+                <th scope='col'>Stock</th>
                 <th scope='col'>Thumbnail</th>
             </tr>
         </thead>
@@ -21,8 +17,9 @@
 
                 <tr>
                     <th scope='row'>{{this.id}}</th>
-                    <td class='text-capitalize'>{{this.title}}</td>
+                    <td class='text-capitalize' >{{this.title}}</td>
                     <td>${{this.price}}</td>
+                    <td>${{this.stock}}</td>
                     <td><img
                             src='{{this.thumbnail}}'
                             alt='{{this.title}}'
@@ -31,7 +28,7 @@
                         /></td>
 
                 </tr>
-
+                
             </tbody>
         {{else}}
             <h1 class='h1 text-center m-5 bg-danger'>No hay productos</h1>
