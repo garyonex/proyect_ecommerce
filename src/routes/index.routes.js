@@ -2,11 +2,12 @@ import { Router } from 'express';
 import multer from 'multer';
 const router = Router();
 const path = require('path');
-import Container from '../container';
-const productos = new Container(
-    path.join(__dirname, '../dataBase/products.json')
-);
-
+//import Container from '../container';
+//const productos = new Container(
+// path.join(__dirname, '../dataBase/products.json')
+//;
+import Api from '../apiClass.js';
+import { options } from '../dataBase/configDB.js';
 //multer
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../public/upload'),
@@ -22,9 +23,33 @@ router.use(
     }).single('imagen')
 );
 
-router.get('/', (req, res) => {
-    res.render('index');
+//--- utilizando DB
+const api = new Api(options.mariaDB, 'articulos');
+//--- rutas
+// router.get('/', (req, res) => {
+//     res.render('index');
+// });
+router.get('/', async (req, res) => {
+    const pdt = await api.findAll();
+    res.json(pdt);
 });
+
+router.post('/', async (req, res) => {
+    const obj = req.body
+    const product = await api.create(obj);
+    res.json({product});
+});
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await api.findById(id);
+    res.json(product);
+});
+
+router.delete('/', async(req,res)=>{
+    await api.deleteAll()
+    res.json({mensaje: ' se elimino todo'})
+})
+//------ --------------- - --- - - --------------------------
 router.get('/about', (req, res) => {
     res.render('about');
 });

@@ -54,13 +54,13 @@ function displayProductos(productList) {
     productList.forEach((element) => {
         productosHTML += `<div class="col text-center mt-4 text-capitalize" >
            
-                    <div class="card h-100 card_img">
+                    <div class="card h-100 card_img shadow_sm">
                         <img src="${element.thumbnail}" class="card-img-top" alt="${element.title}">
                         <div class="card-body">
                         <h5 class="card-title">${element.title}</h5>
-                        <p class="card-text">Price ${element.price}</p>
-                         <p class="card-text">Stock ${element.stock}</p>
-                        <button class="btn btn-primary" onclick="add(${element.id}, ${element.price})">Comprar</button>
+                        <span class="card-text">Price  ${element.price}</span>
+                         <span class="float-start">Stock ${element.stock}</span>
+                        <button class="btn btn-primary mt-2 " onclick="add(${element.id}, ${element.price})">Comprar</button>
                         </div>
                     </div>
              
